@@ -1,10 +1,8 @@
-import Footer from './Components/Footer.jsx';
-
 function App() {
 
   return (
     <>
-    <Footer />
+    Hello Jeeee
     </>
   )
 }
