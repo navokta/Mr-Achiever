@@ -2,7 +2,7 @@
 .footer {
   background: linear-gradient(135deg, #ffffff 0%, #ffe6f0 100%);
   color: #333;
-  padding: 50px 0 10px 0;
+  padding: 50px 0 0 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   border-top: 3px solid #f8c4da;
   box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.05);

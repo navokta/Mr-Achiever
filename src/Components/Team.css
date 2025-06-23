@@ -1,0 +1,74 @@
+.about-section {
+  padding: 4rem 0;
+  background: linear-gradient(to right, #fff1f9, #ffe6f0);
+}
+
+.about-section h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+  color: #d94f87; /* Bold pink heading */
+  font-weight: 600;
+}
+
+.about-description {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 3rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.8;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 3rem;
+  margin-top: 3rem;
+}
+
+.team-member {
+  text-align: center;
+  background: white;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(233, 30, 99, 0.08); /* soft pink shadow */
+  border: 1px solid #ffd5e5;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-member:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 30px rgba(233, 30, 99, 0.15);
+}
+
+.member-image {
+  margin-bottom: 1rem;
+}
+
+.member-image img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #fcd0e5;
+}
+
+.team-member h3 {
+  color: #ec6090;
+  margin-bottom: 0.5rem;
+  font-size: 1.3rem;
+}
+
+.team-member p:first-of-type {
+  color: #ec6090;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.team-member p:last-of-type {
+  color: #555;
+  line-height: 1.6;
+}
