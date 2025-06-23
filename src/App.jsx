@@ -1,11 +1,11 @@
 import Header from "./Components/Header"
-import 
-import HeaderMiddle from "./Components/HeaderMiddle"
+import Footer from "./Components/Footer"
 
 function App() {
 
   return ( <div>
     <Header />
+    <Footer />
     </div>
   )
 }
