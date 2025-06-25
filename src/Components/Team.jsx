@@ -14,19 +14,19 @@ const team = () => {
           <div className="team-grid">
             <div className="team-member">
               <div className="member-image">
-                <img src="../../public/bhavy.png" alt="Team Member 1" />
+                <img src="/bhavy.png" alt="Team Member 1" />
               </div>
               <h3>Bhavy Sharma</h3>
-              <p>Founder & CEO</p>
+              <p>MERN Stack Developer</p>
               <p>Passionate about empowering people to share their achievements and inspire others.</p>
             </div>
             
             <div className="team-member">
               <div className="member-image">
-                <img src="../../public/Sakshi.png" alt="Team Member 2" />
+                <img src="/Sakshi.png" alt="Team Member 2" />
               </div>
               <h3>Sakshi Jain</h3>
-              <p>Pata nhii</p>
+              <p>MERN Stack Developer</p>
               <p>Tech enthusiast dedicated to building platforms that connect and inspire communities.</p>
             </div>
           </div>
