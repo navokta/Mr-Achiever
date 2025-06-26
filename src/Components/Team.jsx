@@ -14,7 +14,7 @@ const team = () => {
           <div className="team-grid">
             <div className="team-member">
               <div className="member-image">
-                <img src="/bhavy.png" alt="Team Member 1" />
+                <img src="/bhavy.jpg" alt="Team Member 1" />
               </div>
               <h3>Bhavy Sharma</h3>
               <p>MERN Stack Developer</p>
