@@ -1,9 +1,12 @@
 import React from 'react'
+import CommunityCards from '../Components/CommunityCards'
+import ContactForm from '../Components/ContactForm'
 
 const Contact = () => {
   return (
     <div>
-      I am contact 
+      <CommunityCards />
+      <ContactForm />
     </div>
   )
 }

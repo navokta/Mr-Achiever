@@ -1,0 +1,51 @@
+.community-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  padding: 40px;
+  background: #fafafa;
+}
+
+.community-card {
+  background: linear-gradient(to bottom right, #ffe6f0, #ffd6e8);
+  border-radius: 15px;
+  padding: 30px;
+  width: 320px;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.community-card:hover {
+  transform: translateY(-5px);
+}
+
+.community-card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #d63384;
+}
+
+.community-card p {
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 20px;
+}
+
+.btn-join {
+  background-color: #ff69b4;
+  color: white;
+  padding: 10px 25px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.btn-join:hover {
+  background-color: #e055a6;
+}
+
+
