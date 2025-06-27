@@ -1,6 +1,7 @@
 import React from 'react'
 import Teamcore from '../Components/Teamcore'
 import VerticalAlternatingTimeline from '../Components/VerticalAlternatingTimeline'
+import FloatingActionButton from '../Components/FloatingActionButton'
 
 
 
@@ -9,6 +10,7 @@ const About = () => {
     <div>
     <VerticalAlternatingTimeline />
    <Teamcore />
+   <FloatingActionButton />
    </div>
   )
 }

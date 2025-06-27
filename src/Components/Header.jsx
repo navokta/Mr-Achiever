@@ -18,10 +18,10 @@ const Header = () => {
       </nav>
 
       <div className="header-right">
-        <a href="#"><img src="/linkedin.png" alt="LinkedIn" /></a>
-        <a href="#"><img src="/twitter.png" alt="Twitter" /></a>
-        <a href="#"><img src="/github.png" alt="GitHub" /></a>
-        <a href="#"><img src="/insta.png" alt="Instagram" /></a>
+        <a href="#"><img src="../../src/assets/linkedin.png" alt="LinkedIn" /></a>
+        <a href="#"><img src="../../src/assets/twitter.png" alt="Twitter" /></a>
+        <a href="#"><img src="../../src/assets/github.png" alt="GitHub" /></a>
+        <a href="#"><img src="../../src/assets/insta.png" alt="Instagram" /></a>
       </div>
     </header>
   );

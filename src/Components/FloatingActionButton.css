@@ -1,0 +1,87 @@
+.fab-container {
+  position: fixed;
+  right: 20px;
+  z-index: 999;
+  transition: bottom 0.3s ease;
+}
+
+.fab-button {
+  background: linear-gradient(135deg, #ffe6f0, #ff0066);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.plus-icon {
+  font-size: 32px;
+  color: white;
+  transition: transform 0.3s ease;
+}
+
+.fab-button.cross .plus-icon {
+  transform: rotate(45deg);
+}
+
+.fab-options {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  position: absolute;
+  bottom: 70px;
+  right: 0;
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.fab-container.active .fab-options {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.fab-option {
+  background-color: white;
+  color: black;
+  text-decoration: none;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  white-space: nowrap;
+  transition: background 0.2s, transform 0.3s;
+}
+
+.fab-option:hover {
+  background-color: #fce4ec;
+  transform: scale(1.05);
+}
+
+.topBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  display: block;
+  background-color: linear-gradient(135deg, #ffe6f0, #ff0066);
+  color: linear-gradient(135deg, #ffe6f0, #ff0066);
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.3s;
+}
+
+.topBtn:hover {
+  background-color: #f13882;
+}

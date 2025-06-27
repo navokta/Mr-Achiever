@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import './Teamcore.css';
-import mamImg from '/mam.jpg';
-import bhavyImg from '/bhavy.jpg';
-import sakshiImg from '/Sakshi.png';
-import bhumiImg from '/bhumi.png';
-import kratakshiImg from '/kratakshi.png';
-import fazalImg from '/fazal.png'
-import abhinavImg from '../../public/abhinav.jpg';
+import mamImg from '../../src/assets/mam.jpg';
+import bhavyImg from '../../src/assets/bhavy.jpg';
+import sakshiImg from '../../src/assets/Sakshi.png';
+import bhumiImg from '../../src/assets/bhumi.png';
+import kratakshiImg from '../../src/assets/kratakshi.png';
+import fazalImg from '../../src/assets/fazal.png'
+import abhinavImg from '../../src/assets/abhinav.jpg';
 
 // const placeholderImg = 'https://via.placeholder.com/150';
 
