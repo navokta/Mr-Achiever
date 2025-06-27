@@ -14,8 +14,12 @@ import {
 import {
   OnChangePlugin
 } from "@lexical/react/LexicalOnChangePlugin";
-import { $getRoot, $setSelection, $createParagraphNode } from "lexical";
-import { $createTextNode } from "lexical"; // add this import at top
+import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
+import {
+  $getRoot,
+  $createParagraphNode,
+  $createTextNode
+} from "lexical";
 import "./StoryEditor.css";
 
 const editorConfig = {
@@ -30,6 +34,15 @@ const editorConfig = {
   onError(error) {
     throw error;
   }
+};
+
+// ✅ Separate plugin to access editor instance
+const EditorRefPlugin = ({ setEditor }) => {
+  const [editor] = useLexicalComposerContext();
+  React.useEffect(() => {
+    setEditor(editor);
+  }, [editor]);
+  return null;
 };
 
 const StoryEditor = () => {
@@ -57,36 +70,37 @@ const StoryEditor = () => {
     alert("Story submitted!");
   };
 
- const handleRephrase = async () => {
-  try {
-    const res = await fetch("/api/rephrase", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ text: story }),
-    });
-
-    if (!res.ok) {
-      const errorText = await res.text(); // Read raw error (not JSON)
-      throw new Error(`Server error (${res.status}): ${errorText}`);
-    }
-
-    const data = await res.json(); // Only parse if safe
-
-    if (!data.rephrased) throw new Error("AI response missing `rephrased` text");
-
-    if (editorInstance) {
-      editorInstance.update(() => {
-        const root = $getRoot();
-        root.clear();
-        root.append($createParagraphNode().append(data.rephrased));
+  const handleRephrase = async () => {
+    try {
+      const res = await fetch("/api/rephrase", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: story }),
       });
-    }
-  } catch (err) {
-    console.error("Rephrase error:", err);
-    alert("AI failed to rephrase. See console for details.");
-  }
-};
 
+      if (!res.ok) {
+        const errorText = await res.text();
+        throw new Error(`Server error (${res.status}): ${errorText}`);
+      }
+
+      const data = await res.json();
+      if (!data.rephrased) throw new Error("AI response missing `rephrased` text");
+
+      // ✅ Actually update Lexical content
+      if (editorInstance) {
+        editorInstance.update(() => {
+          const root = $getRoot();
+          root.clear();
+          const para = $createParagraphNode();
+          para.append($createTextNode(data.rephrased));
+          root.append(para);
+        });
+      }
+    } catch (err) {
+      console.error("Rephrase error:", err);
+      alert("AI failed to rephrase. See console for details.");
+    }
+  };
 
   return (
     <div className="editor-container">
@@ -98,17 +112,11 @@ const StoryEditor = () => {
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
-      <LexicalComposer
-        initialConfig={{
-          ...editorConfig,
-          editor__DEPRECATED: setEditorInstance
-        }}
-      >
+      <LexicalComposer initialConfig={editorConfig}>
+        <EditorRefPlugin setEditor={setEditorInstance} />
         <RichTextPlugin
           contentEditable={<ContentEditable className="editor-input" />}
-          placeholder={
-            <div className="editor-placeholder">Write your story...</div>
-          }
+          placeholder={<div className="editor-placeholder">Write your story...</div>}
         />
         <OnChangePlugin onChange={handleChange} />
         <HistoryPlugin />
@@ -121,5 +129,5 @@ const StoryEditor = () => {
     </div>
   );
 };
- 
+
 export default StoryEditor;
