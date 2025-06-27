@@ -1,10 +1,11 @@
 import React from 'react'
+import StoryEditor from '../Components/StoryEditor'
 
 
 const Contact = () => {
   return (
     <div>
-      Hello jee
+      <StoryEditor />
     </div>
   )
 }
