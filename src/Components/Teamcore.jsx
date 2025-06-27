@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import './Teamcore.css';
 import mamImg from '/mam.jpg';
 import bhavyImg from '/bhavy.jpg';
-import sakshiImg from '../../public/Sakshi.png';
-import bhumiImg from '../../public/bhumi.png';
-import kratakshiImg from '../../public/Kratakshi.png';
-import fazalImg from '../../public/fazal.png'
+import sakshiImg from '/Sakshi.png';
+import bhumiImg from '/bhumi.png';
+import kratakshiImg from '/kratakshi.png';
+import fazalImg from '/fazal.png'
 import abhinavImg from '../../public/abhinav.jpg';
 
 // const placeholderImg = 'https://via.placeholder.com/150';

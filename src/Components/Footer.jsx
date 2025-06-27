@@ -1,5 +1,6 @@
 import React from 'react'
 import './Footer.css'
+import { NavLink } from 'react-router-dom';
 
 const Footer = () => {
  const currentYear = new Date().getFullYear();
@@ -26,10 +27,10 @@ const Footer = () => {
         <div className="footer-box des">
           <h3 className="footer-txt">Quick Links</h3>
           <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/layout/courses">Courses</a></li>
-            <li><a href="/layout/about">About Us</a></li>
-            <li><a href="/layout/contact">Contact Us</a></li>
+            <li><NavLink to="/">Home</NavLink></li>
+            <li><NavLink to="/About">About</NavLink></li>
+            <li><NavLink to="/Story">Stories</NavLink></li>
+            <li><NavLink to="/Contact">Contact</NavLink></li>
           </ul>
         </div>
 
