@@ -10,6 +10,7 @@ import Story from "./Pages/Story"
 import About from "./Pages/About"
 import Contact from "./Pages/Contact"
 import Footer from "./Components/Footer"
+import StoryEditor from "./Components/StoryEditor"
 
 const router = createBrowserRouter(
   [
@@ -42,6 +43,14 @@ const router = createBrowserRouter(
       element: <div>
         <Header />
         <Contact />
+        <Footer />
+      </div>
+    },
+    {
+      path: "/add-story",
+      element: <div>
+        <Header />
+        <StoryEditor />
         <Footer />
       </div>
     }

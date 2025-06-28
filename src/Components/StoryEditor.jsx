@@ -21,6 +21,8 @@ import {
   $createTextNode
 } from "lexical";
 import "./StoryEditor.css";
+import { useNavigate } from 'react-router-dom';
+
 
 const editorConfig = {
   namespace: "StoryEditor",
@@ -45,7 +47,11 @@ const EditorRefPlugin = ({ setEditor }) => {
   return null;
 };
 
+
+
+
 const StoryEditor = () => {
+  const navigate = useNavigate();
   const [story, setStory] = useState("");
   const [name, setName] = useState("");
   const [editorInstance, setEditorInstance] = useState(null);
@@ -57,18 +63,29 @@ const StoryEditor = () => {
     });
   };
 
-  const handleSubmit = async () => {
-    const res = await fetch("/api/stories", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name,
-        story,
-        createdAt: new Date().toISOString()
-      })
-    });
-    alert("Story submitted!");
-  };
+const handleSubmit = async () => {
+  const res = await fetch("http://localhost:5000/api/stories", { // ✅ make sure full URL
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      name,
+      story,
+      createdAt: new Date().toISOString()
+    })
+  });
+
+  const data = await res.json(); // ← capture response
+  console.log("Server response:", data); // ✅ log result
+
+if (res.ok) {
+  alert("Story submitted!");
+  navigate("/Story"); // ✅ lowercase, and correctly invoked
+} else {
+  alert("Failed to submit story.");
+}
+};
+
+
 
   const handleRephrase = async () => {
     try {
@@ -116,7 +133,6 @@ const StoryEditor = () => {
         <EditorRefPlugin setEditor={setEditorInstance} />
         <RichTextPlugin
           contentEditable={<ContentEditable className="editor-input" />}
-          placeholder={<div className="editor-placeholder">Write your story...</div>}
         />
         <OnChangePlugin onChange={handleChange} />
         <HistoryPlugin />
