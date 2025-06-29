@@ -1,4 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { FaWhatsapp, FaFacebook, FaTwitter, FaTelegram, FaLinkedin, FaLink } from "react-icons/fa";
+import FloatingActionButton from '../Components/FloatingActionButton'
+import "./Story.css";
+
 import {
   FaWhatsapp,
   FaFacebook,
@@ -113,7 +117,10 @@ const Story = () => {
       {stories.length === 0 ? (
         <div className="no-stories">
           <p>No stories yet. Be the first to share!</p>
-          <button className="create-story-btn" onClick={() => navigate("/story-editor")}>
+          <button 
+            className="create-story-btn"
+            onClick={() => navigate('/add-story')}
+          >
             Create Your Story
           </button>
         </div>
@@ -274,6 +281,7 @@ const Story = () => {
           </div>
         ))
       )}
+      <FloatingActionButton />
     </div>
   );
 };

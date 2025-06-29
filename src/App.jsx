@@ -11,6 +11,7 @@ import StoryEditor from "./Components/StoryEditor";
 import StoryDetail from "./Pages/StoryDetails";
 import Admin from "./Pages/admin";
 import LearnMore from "./Components/LearnMore";
+import { Toaster } from 'react-hot-toast';
 
 const router = createBrowserRouter([
   {
@@ -98,6 +99,7 @@ const router = createBrowserRouter([
 function App() {
   return (
     <>
+       <Toaster position="top-right" />
       <RouterProvider router={router} />
     </>
   );

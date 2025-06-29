@@ -10,7 +10,7 @@ const Header = () => {
   return (
     <header className="header">
       <div className="header-left">
-        <img src="/profile.png" alt="Logo" className="logo" />
+        <img src="../../src/assets/Logo.png" alt="Logo" className="logo" />
         <span className="brand">Navokta</span>
       </div>
 
@@ -21,7 +21,7 @@ const Header = () => {
         <NavLink to="/Contact" onClick={() => setMenuOpen(false)}>Contact</NavLink>
         <div className="mobile-socials">
           <a href="https://www.linkedin.com/company/navokta/" target='_blank'><img src="../../src/assets/linkedin.png" alt="LinkedIn" /></a>
-          <a href="#" target='_blank'><img src="../../src/assets/twitter.png" alt="Twitter" /></a>
+          <a href="https://x.com/navokta" target='_blank'><img src="../../src/assets/twitter.png" alt="Twitter" /></a>
           <a href="https://github.com/navokta/" target='_blank'><img src="../../src/assets/github.png" alt="GitHub" /></a>
           <a href="https://www.instagram.com/navokta/" target='_blank'><img src="../../src/assets/insta.png" alt="Instagram" /></a>
         </div>
@@ -30,7 +30,7 @@ const Header = () => {
       <div className="header-right">
         <div className="desktop-socials">
           <a href="https://www.linkedin.com/company/navokta/" target='_blank'><img src="../../src/assets/linkedin.png" alt="LinkedIn" /></a>
-          <a href="#" target='_blank'><img src="../../src/assets/twitter.png" alt="Twitter" /></a>
+          <a href="https://x.com/navokta" target='_blank'><img src="../../src/assets/twitter.png" alt="Twitter" /></a>
           <a href="https://github.com/navokta/" target='_blank'><img src="../../src/assets/github.png" alt="GitHub" /></a>
           <a href="https://www.instagram.com/navokta/" target='_blank'><img src="../../src/assets/insta.png" alt="Instagram" /></a>
         </div>

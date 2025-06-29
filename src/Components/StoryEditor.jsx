@@ -8,6 +8,8 @@ import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext
 import { $getRoot, $createParagraphNode, $createTextNode } from "lexical";
 import { useNavigate } from "react-router-dom";
 import "./StoryEditor.css";
+import toast from "react-hot-toast";
+
 
 const editorConfig = {
   namespace: "StoryEditor",
@@ -41,7 +43,7 @@ const StoryEditor = () => {
   const [isRephrasing, setIsRephrasing] = useState(false);
 
   const wordCount = story.trim().split(/\s+/).filter(Boolean).length;
-  const isReady = wordCount >= 200;
+  const isReady = wordCount >= 100;
 
   const handleChange = (editorState) => {
     editorState.read(() => {
@@ -69,11 +71,11 @@ const StoryEditor = () => {
         throw new Error(err.message || "Submission failed");
       }
 
-      alert("Story submitted successfully!");
+      toast.success("Story submitted successfully!");
       navigate("/story");
     } catch (err) {
       console.error(err);
-      alert("Failed to submit story. Try again.");
+      toast.error("Failed to submit story. Try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -102,7 +104,7 @@ const StoryEditor = () => {
       });
     } catch (err) {
       console.error(err);
-      alert("AI Rephrase failed. Try again.");
+      toast.error("AI Rephrase failed. Try again.");
     } finally {
       setIsRephrasing(false);
     }
@@ -139,7 +141,7 @@ const StoryEditor = () => {
           </LexicalComposer>
         </div>
 
-        <p className="word-count">📝 Word Count: {wordCount} (When you Write 200 Words then Rephrase button will open)</p>
+        <p className="word-count">📝 Word Count: {wordCount} (When you Write 100 Words then Rephrase & Submit Story button will Work)</p>
 
         <div className="story-editor-actions">
           <button
@@ -159,7 +161,9 @@ const StoryEditor = () => {
           </button>
         </div>
       </div>
+      
     </div>
+
   );
 };
 
