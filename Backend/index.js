@@ -6,6 +6,8 @@ import storyRoutes from './routes/StoryRoutes.js';
 import rephraseRoute from './routes/rephrase.js';
 // import storyRoutes from './routes/Story.js'; // 👈 Correct case-sensitive import
 import Story from './models/Story.js'; // Ensure this path is correct
+import adminRoutes from './routes/adminRoutes.js';
+
 
 dotenv.config();
 const app = express();
@@ -21,7 +23,8 @@ mongoose.connect(process.env.MONGO_URI, {
 .catch((err) => console.error('❌ MongoDB connection error:', err));
 
 app.use('/api', rephraseRoute);
-app.use('/api', storyRoutes); // 👈 Your story routes
+app.use('/api/stories', storyRoutes); // 👈 Your story routes
+app.use('/api/admin', adminRoutes); // ✅ Mount admin API under /api/admin
 
 
 app.patch("/api/stories/:id/like", async (req, res) => {

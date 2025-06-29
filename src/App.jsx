@@ -1,80 +1,95 @@
-import React from "react"
+import React from "react";
 import * as ReactDOM from "react-dom";
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
-import Header from "./Components/Header"
-import Home from "./Pages/Home"
-import Story from "./Pages/Story"
-import About from "./Pages/About"
-import Contact from "./Pages/Contact"
-import Footer from "./Components/Footer"
-import StoryEditor from "./Components/StoryEditor"
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Header from "./Components/Header";
+import Home from "./Pages/Home";
+import Story from "./Pages/Story";
+import About from "./Pages/About";
+import Contact from "./Pages/Contact";
+import Footer from "./Components/Footer";
+import StoryEditor from "./Components/StoryEditor";
 import StoryDetail from "./Pages/StoryDetails";
+import Admin from "./Pages/admin";
 
-const router = createBrowserRouter(
-  [
-    {
-      path: "/",
-      element: <div>
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: (
+      <div>
         <Header />
         <Home />
         <Footer />
       </div>
-    },
-    {
-      path: "/About",
-      element: <div>
+    ),
+  },
+  {
+    path: "/About",
+    element: (
+      <div>
         <Header />
         <About />
         <Footer />
       </div>
-    },
-    {
-      path: "/Story",
-      element: <div>
+    ),
+  },
+  {
+    path: "/Story",
+    element: (
+      <div>
         <Header />
         <Story />
         <Footer />
       </div>
-    },
-    {
-      path: "/Contact",
-      element: <div>
+    ),
+  },
+  {
+    path: "/Contact",
+    element: (
+      <div>
         <Header />
         <Contact />
         <Footer />
       </div>
-    },
-    {
-      path: "/add-story",
-      element: <div>
+    ),
+  },
+  {
+    path: "/add-story",
+    element: (
+      <div>
         <Header />
         <StoryEditor />
         <Footer />
       </div>
-    },
-    {
-  path: "/story/:id",
-  element: <div>
-    <Header />
-    <StoryDetail />
-    <Footer />
-  </div>
-}
-  ]
-);
-
-
+    ),
+  },
+  {
+    path: "/story/:id",
+    element: (
+      <div>
+        <Header />
+        <StoryDetail />
+        <Footer />
+      </div>
+    ),
+  },
+  {
+    path: "/admin",
+    element: (
+      <div>
+        <Header />
+        <Admin />
+        <Footer />
+      </div>
+    ),
+  },
+]);
 
 function App() {
-
-  return ( 
+  return (
     <>
-    <RouterProvider router={router} />
+      <RouterProvider router={router} />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
