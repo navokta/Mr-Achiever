@@ -1,66 +1,329 @@
-.story-container {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+/* Base Styles */
+.stories-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  background: linear-gradient(135deg, #ffffff 0%, #fff5f5 50%, #ffebf3 100%);
+  min-height: 100vh;
+}
+
+.stories-title {
+  text-align: center;
+  color: #d63384;
+  margin-bottom: 2rem;
+  font-size: 2.2rem;
+  font-weight: 600;
+}
+
+.no-stories {
+  text-align: center;
   padding: 2rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(214, 51, 132, 0.1);
 }
 
+.create-story-btn {
+  background: linear-gradient(135deg, #ff80ab, #ff4081);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: all 0.3s ease;
+}
+
+.create-story-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 64, 129, 0.3);
+}
+
+/* Story Card */
 .story-card {
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  padding: 1rem;
-  background: #f9f9f9;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(214, 51, 132, 0.1);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
 }
 
+.story-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(214, 51, 132, 0.15);
+}
+
+/* Header */
 .story-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 1rem;
 }
 
-.user-icon {
-  font-size: 2rem;
-  margin-right: 0.5rem;
+.author-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
-.user-info p {
+.author-avatar {
+  font-size: 2.5rem;
+  color: #ff80ab;
+}
+
+.author-name {
   margin: 0;
-  font-size: 0.9rem;
+  color: #333;
+  font-size: 1.1rem;
 }
 
 .story-date {
+  margin: 0;
+  color: #888;
   font-size: 0.85rem;
-  color: gray;
 }
 
-.story-body {
-  margin: 1rem 0;
-  font-size: 1rem;
-  line-height: 1.5;
-}
-
-.read-more {
-  background: transparent;
-  border: 1px solid #000;
-  padding: 0.25rem 0.5rem;
-  cursor: pointer;
-}
-
-.story-actions {
-  display: flex;
-  justify-content: space-around;
-  padding-top: 0.5rem;
-  border-top: 1px solid #ccc;
-}
-
-.story-actions button {
-  background: white;
-  border: 1px solid #ccc;
-  padding: 0.5rem 1rem;
+.story-views {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  cursor: pointer;
-  border-radius: 5px;
+  gap: 5px;
+  color: #888;
+  font-size: 0.9rem;
 }
+
+/* Content */
+.story-content {
+  margin: 1rem 0;
+  line-height: 1.6;
+  color: #444;
+}
+
+.read-more-btn {
+  background: transparent;
+  border: none;
+  color: #ff4081;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  display: inline-block;
+}
+
+.read-more-btn:hover {
+  text-decoration: underline;
+}
+
+/* Actions */
+.story-actions {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.75rem 0;
+  border-top: 1px solid #f0f0f0;
+  margin-top: 1rem;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.like-btn {
+  color: #888;
+}
+
+.like-btn.liked {
+  color: #ff4081;
+}
+
+.comment-btn {
+  color: #888;
+}
+
+.comment-btn.active {
+  color: #ff4081;
+}
+
+.share-btn, .view-page-btn {
+  color: #888;
+}
+
+.action-btn:hover {
+  background: #fff5f9;
+  color: #ff4081;
+}
+
+/* Comments Section */
+.comments-section {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #f0f0f0;
+}
+
+.comments-section h4 {
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.comments-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+}
+
+.comment-item {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.comment-content p {
+  margin: 0 0 0.25rem 0;
+  color: #333;
+}
+
+.comment-date {
+  color: #888;
+  font-size: 0.8rem;
+}
+
+.no-comments {
+  color: #888;
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.add-comment {
+  display: flex;
+  gap: 10px;
+  margin-top: 1rem;
+}
+
+.comment-input {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid #ffcce6;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.comment-input:focus {
+  outline: none;
+  border-color: #ff80ab;
+}
+
+.post-comment-btn {
+  background: linear-gradient(135deg, #ff80ab, #ff4081);
+  color: white;
+  border: none;
+  padding: 0 1.25rem;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.post-comment-btn:hover {
+  transform: translateY(-1px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .stories-container {
+    padding: 1.5rem 1rem;
+  }
+  
+  .story-card {
+    padding: 1.25rem;
+  }
+  
+  .story-actions {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .action-btn {
+    padding: 6px 8px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .stories-title {
+    font-size: 1.8rem;
+  }
+  
+  .author-avatar {
+    font-size: 2rem;
+  }
+  
+  .author-name {
+    font-size: 1rem;
+  }
+  
+  .story-content {
+    font-size: 0.95rem;
+  }
+}
+
+
+.share-options button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.4rem;
+  margin-right: 10px;
+  transition: transform 0.2s;
+}
+
+.share-options button:hover {
+  transform: scale(1.1);
+}
+
+.share-dropdown-wrapper {
+  position: relative;
+}
+
+.share-dropdown {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background: white;
+  border: 1px solid #ffd6e8;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 4px 12px rgba(214, 51, 132, 0.15);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  min-width: 180px;
+}
+
+.share-dropdown button {
+  background: none;
+  border: none;
+  color: #d63384;
+  padding: 8px 12px;
+  font-size: 0.95rem;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.share-dropdown button:hover {
+  background: #fff0f5;
+  color: #b03060;
+}
+

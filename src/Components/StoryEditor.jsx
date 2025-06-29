@@ -1,44 +1,29 @@
 import React, { useState } from "react";
-import {
-  LexicalComposer
-} from "@lexical/react/LexicalComposer";
-import {
-  RichTextPlugin
-} from "@lexical/react/LexicalRichTextPlugin";
-import {
-  ContentEditable
-} from "@lexical/react/LexicalContentEditable";
-import {
-  HistoryPlugin
-} from "@lexical/react/LexicalHistoryPlugin";
-import {
-  OnChangePlugin
-} from "@lexical/react/LexicalOnChangePlugin";
+import { LexicalComposer } from "@lexical/react/LexicalComposer";
+import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
+import { ContentEditable } from "@lexical/react/LexicalContentEditable";
+import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
+import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import {
-  $getRoot,
-  $createParagraphNode,
-  $createTextNode
-} from "lexical";
+import { $getRoot, $createParagraphNode, $createTextNode } from "lexical";
 import "./StoryEditor.css";
 import { useNavigate } from 'react-router-dom';
-
 
 const editorConfig = {
   namespace: "StoryEditor",
   theme: {
     paragraph: "editor-paragraph",
     text: {
-      bold: "editor-bold",
-      italic: "editor-italic"
+      bold: "editor-text-bold",
+      italic: "editor-text-italic",
+      underline: "editor-text-underline"
     }
   },
   onError(error) {
-    throw error;
+    console.error(error);
   }
 };
 
-// ✅ Separate plugin to access editor instance
 const EditorRefPlugin = ({ setEditor }) => {
   const [editor] = useLexicalComposerContext();
   React.useEffect(() => {
@@ -46,9 +31,6 @@ const EditorRefPlugin = ({ setEditor }) => {
   }, [editor]);
   return null;
 };
-
-
-
 
 const StoryEditor = () => {
   const navigate = useNavigate();
@@ -63,31 +45,38 @@ const StoryEditor = () => {
     });
   };
 
-const handleSubmit = async () => {
-  const res = await fetch("http://localhost:5000/api/stories", { // ✅ make sure full URL
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      name,
-      story,
-      createdAt: new Date().toISOString()
-    })
-  });
+  const handleSubmit = async () => {
+    try {
+      const res = await fetch("http://localhost:5000/api/stories", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          story,
+          createdAt: new Date().toISOString()
+        })
+      });
 
-  const data = await res.json(); // ← capture response
-  console.log("Server response:", data); // ✅ log result
-
-if (res.ok) {
-  alert("Story submitted!");
-  navigate("/Story"); // ✅ lowercase, and correctly invoked
-} else {
-  alert("Failed to submit story.");
-}
-};
-
-
+      const data = await res.json();
+      
+      if (res.ok) {
+        alert("Story submitted successfully!");
+        navigate("/story");
+      } else {
+        throw new Error(data.message || "Failed to submit story");
+      }
+    } catch (error) {
+      console.error("Submission error:", error);
+      alert(error.message);
+    }
+  };
 
   const handleRephrase = async () => {
+    if (!story.trim()) {
+      alert("Please write something first!");
+      return;
+    }
+
     try {
       const res = await fetch("/api/rephrase", {
         method: "POST",
@@ -95,52 +84,68 @@ if (res.ok) {
         body: JSON.stringify({ text: story }),
       });
 
-      if (!res.ok) {
-        const errorText = await res.text();
-        throw new Error(`Server error (${res.status}): ${errorText}`);
-      }
+      if (!res.ok) throw new Error(`Server error: ${res.status}`);
 
       const data = await res.json();
-      if (!data.rephrased) throw new Error("AI response missing `rephrased` text");
-
-      // ✅ Actually update Lexical content
-      if (editorInstance) {
-        editorInstance.update(() => {
-          const root = $getRoot();
-          root.clear();
-          const para = $createParagraphNode();
-          para.append($createTextNode(data.rephrased));
-          root.append(para);
-        });
-      }
-    } catch (err) {
-      console.error("Rephrase error:", err);
-      alert("AI failed to rephrase. See console for details.");
+      
+      editorInstance?.update(() => {
+        const root = $getRoot();
+        root.clear();
+        const para = $createParagraphNode();
+        para.append($createTextNode(data.rephrased || data.text));
+        root.append(para);
+      });
+    } catch (error) {
+      console.error("Rephrase error:", error);
+      alert("Failed to rephrase. Please try again.");
     }
   };
 
   return (
-    <div className="editor-container">
-      <h2>Tell Your Story</h2>
-      <input
-        type="text"
-        placeholder="Your Name"
-        className="editor-name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-      <LexicalComposer initialConfig={editorConfig}>
-        <EditorRefPlugin setEditor={setEditorInstance} />
-        <RichTextPlugin
-          contentEditable={<ContentEditable className="editor-input" />}
+    <div className="story-editor-container">
+      <div className="story-editor-card">
+        <h2 className="story-editor-title">Share Your Story</h2>
+        
+        <input
+          type="text"
+          placeholder="Your Name"
+          className="story-editor-name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
         />
-        <OnChangePlugin onChange={handleChange} />
-        <HistoryPlugin />
-      </LexicalComposer>
-
-      <div className="btns">
-        <button onClick={handleRephrase}>Rephrase with AI</button>
-        <button onClick={handleSubmit}>Submit</button>
+        
+        <div className="story-editor-wrapper">
+          <LexicalComposer initialConfig={editorConfig}>
+            <EditorRefPlugin setEditor={setEditorInstance} />
+            <RichTextPlugin
+              contentEditable={
+                <ContentEditable className="story-editor-content" />
+              }
+              placeholder={
+                <div className="story-editor-placeholder">
+                  Write your story here...
+                </div>
+              }
+            />
+            <OnChangePlugin onChange={handleChange} />
+            <HistoryPlugin />
+          </LexicalComposer>
+        </div>
+        
+        <div className="story-editor-actions">
+          <button 
+            className="story-editor-button rephrase-btn"
+            onClick={handleRephrase}
+          >
+            ✨ Rephrase with AI
+          </button>
+          <button 
+            className="story-editor-button submit-btn"
+            onClick={handleSubmit}
+          >
+            📤 Submit Story
+          </button>
+        </div>
       </div>
     </div>
   );
