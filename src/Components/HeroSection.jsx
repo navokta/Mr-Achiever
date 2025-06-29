@@ -9,7 +9,7 @@ const HeroSection = () => {
         Are you Exicted to Listen <span className="highlight">Our Hero's Story</span>
       </h1>
       <p>
-        We are Willing to Listen Your Story, Wherther you are a Student, An IAS, A Coder etc...
+        Navokta: Your Stories Matters, No matter your Field.
       </p>
       <div className="hero-buttons">
         <NavLink to={"/Story"}><button className="get-started">

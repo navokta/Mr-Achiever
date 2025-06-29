@@ -7,7 +7,7 @@ const Header = () => {
     <header className="header">
       <div className="header-left">
         <img src="/profile.png" alt="Logo" className="logo" />
-        <span className="brand">Mr. Achiver</span>
+        <span className="brand">Navokta</span>
       </div>
 
       <nav className="header-center">

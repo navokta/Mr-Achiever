@@ -61,6 +61,20 @@ app.get("/story/:id", async (req, res) => {
   }
 });
 
+app.get('/api/stats', async (req, res) => {
+  try {
+    const stories = await Story.find();
+    const totalViews = stories.reduce((acc, story) => acc + (story.views || 0), 0);
+    const totalStories = stories.length;
+
+    res.json({ totalUsers: totalViews, totalStories });
+  } catch (err) {
+    console.error("Error fetching stats:", err);
+    res.status(500).json({ error: "Failed to fetch stats" });
+  }
+});
+
+
 
 
 const PORT = process.env.PORT || 5000;
