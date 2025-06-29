@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import './Admin.css';
 
-const BASE_URL = import.meta.env.VITE_API_BASE;
-
+const BASE_URL = import.meta.env.VITE_API_BASE || "https://mr-achiever.onrender.com";
 
 const Admin = () => {
   const [username, setUsername] = useState('');
@@ -15,11 +14,10 @@ const Admin = () => {
     e.preventDefault();
     try {
       const res = await fetch(`${BASE_URL}/api/admin/login`, {
-  method: 'POST',
-  headers: { 'Content-Type': 'application/json' },
-  body: JSON.stringify({ username, password })
-});
-
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      });
 
       if (res.ok) {
         setIsAuthenticated(true);
@@ -36,7 +34,7 @@ const Admin = () => {
   const fetchStories = async () => {
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:5000/api/admin/stories');
+      const res = await fetch(`${BASE_URL}/api/admin/stories`);
       const data = await res.json();
       setStories(data);
     } catch (err) {
@@ -47,7 +45,7 @@ const Admin = () => {
   };
 
   const deleteStory = async (id) => {
-    await fetch(`http://localhost:5000/api/admin/stories/${id}`, {
+    await fetch(`${BASE_URL}/api/admin/stories/${id}`, {
       method: 'DELETE'
     });
     fetchStories();
@@ -57,7 +55,7 @@ const Admin = () => {
     const newName = prompt('Enter new name:');
     const newStory = prompt('Enter new story:');
     if (newName && newStory) {
-      await fetch(`http://localhost:5000/api/admin/stories/${id}`, {
+      await fetch(`${BASE_URL}/api/admin/stories/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name: newName, story: newStory })
@@ -69,7 +67,7 @@ const Admin = () => {
   const updateView = async (id) => {
     const newViews = parseInt(prompt('Enter new view count:'), 10);
     if (!isNaN(newViews)) {
-      await fetch(`http://localhost:5000/api/admin/stories/${id}/view`, {
+      await fetch(`${BASE_URL}/api/admin/stories/${id}/view`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ views: newViews })
@@ -81,7 +79,7 @@ const Admin = () => {
   const updateComment = async (storyId, index) => {
     const newText = prompt('Edit comment:');
     if (newText?.trim()) {
-      await fetch(`http://localhost:5000/api/admin/stories/${storyId}/comments/${index}`, {
+      await fetch(`${BASE_URL}/api/admin/stories/${storyId}/comments/${index}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text: newText })
@@ -91,7 +89,7 @@ const Admin = () => {
   };
 
   const deleteComment = async (storyId, index) => {
-    await fetch(`http://localhost:5000/api/admin/stories/${storyId}/comments/${index}`, {
+    await fetch(`${BASE_URL}/api/admin/stories/${storyId}/comments/${index}`, {
       method: 'DELETE'
     });
     fetchStories();
