@@ -1,5 +1,7 @@
 import React from "react";
 import "./Team.css";
+import bhavy from '../assets/bhavy.jpg';
+import sakshi from '../assets/Sakshi.png';
 
 const team = () => {
   return (
@@ -16,7 +18,7 @@ const team = () => {
         <div className="team-grid">
           <div className="team-member">
             <div className="member-image">
-              <img src="../assets/bhavy.jpg" alt="Team Member 1" />
+              <img src={bhavy} alt="Team Member 1" />
             </div>
             <h3>Bhavy Sharma</h3>
             <p>MERN Stack Developer</p>
@@ -34,7 +36,7 @@ const team = () => {
 
           <div className="team-member">
             <div className="member-image">
-              <img src="../assets/Sakshi.png" alt="Team Member 2" />
+              <img src={sakshi} alt="Team Member 2" />
             </div>
             <h3>Sakshi Jain</h3>
             <p>MERN Stack Developer</p>
