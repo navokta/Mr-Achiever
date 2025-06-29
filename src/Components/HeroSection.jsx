@@ -15,9 +15,11 @@ const HeroSection = () => {
         <NavLink to={"/Story"}><button className="get-started">
           Read Stories <span className="sparkle">✨</span>
         </button></NavLink>
-        <button className="learn-more">
-          Learn More <span className="arrow">→</span>
-        </button>
+        <NavLink to={"/learn-more"}>
+          <button className="learn-more">
+            Learn More <span className="arrow">→</span>
+          </button>
+        </NavLink>
       </div>
     </section>
   );

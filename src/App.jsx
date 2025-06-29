@@ -10,6 +10,7 @@ import Footer from "./Components/Footer";
 import StoryEditor from "./Components/StoryEditor";
 import StoryDetail from "./Pages/StoryDetails";
 import Admin from "./Pages/admin";
+import LearnMore from "./Components/LearnMore";
 
 const router = createBrowserRouter([
   {
@@ -82,6 +83,16 @@ const router = createBrowserRouter([
       </div>
     ),
   },
+  {
+    path: "/learn-more",
+    element: (
+      <div>
+        <Header />
+        <LearnMore />
+        <Footer />
+      </div>
+    ),
+  }
 ]);
 
 function App() {
