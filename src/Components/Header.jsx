@@ -10,7 +10,7 @@ const Header = () => {
   return (
     <header className="header">
       <div className="header-left">
-        <img src="../../src/assets/Logo.png" alt="Logo" className="logo" />
+        <img src="../assets/Logo.png" alt="Logo" className="logo" />
         <span className="brand">Navokta</span>
       </div>
 
