@@ -1,6 +1,6 @@
 import React from 'react'
 import Status from "../Components/Status"
-import Team from "../Components/team"
+import Team from "../Components/Team"
 import HeroSection from "../Components/HeroSection"
 import FloatingActionButton from '../Components/FloatingActionButton'
 
