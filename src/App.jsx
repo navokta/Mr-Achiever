@@ -11,6 +11,7 @@ import About from "./Pages/About"
 import Contact from "./Pages/Contact"
 import Footer from "./Components/Footer"
 import StoryEditor from "./Components/StoryEditor"
+import StoryDetail from "./Pages/StoryDetails";
 
 const router = createBrowserRouter(
   [
@@ -53,7 +54,15 @@ const router = createBrowserRouter(
         <StoryEditor />
         <Footer />
       </div>
-    }
+    },
+    {
+  path: "/story/:id",
+  element: <div>
+    <Header />
+    <StoryDetail />
+    <Footer />
+  </div>
+}
   ]
 );
 
