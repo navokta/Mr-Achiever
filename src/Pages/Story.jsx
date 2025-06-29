@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FaWhatsapp, FaFacebook, FaTwitter, FaTelegram, FaLinkedin, FaLink } from "react-icons/fa";
-
+import FloatingActionButton from '../Components/FloatingActionButton'
 import "./Story.css";
 
 import {
@@ -114,7 +114,7 @@ const Story = () => {
           <p>No stories yet. Be the first to share!</p>
           <button 
             className="create-story-btn"
-            onClick={() => navigate('/story-editor')}
+            onClick={() => navigate('/add-story')}
           >
             Create Your Story
           </button>
@@ -254,6 +254,7 @@ const Story = () => {
           </div>
         ))
       )}
+      <FloatingActionButton />
     </div>
   );
 };
