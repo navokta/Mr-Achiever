@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FaWhatsapp, FaFacebook, FaTwitter, FaTelegram, FaLinkedin, FaLink } from "react-icons/fa";
+// import { FaWhatsapp, FaFacebook, FaTwitter, FaTelegram, FaLinkedin, FaLink } from "react-icons/fa";
 import FloatingActionButton from '../Components/FloatingActionButton'
 import "./Story.css";
 
