@@ -305,7 +305,32 @@
   display: flex;
   flex-direction: column;
   min-width: 180px;
+  white-space: nowrap;
 }
+
+/* 🔧 Small Screen Fix */
+@media (max-width: 480px) {
+  .share-dropdown {
+    top: 45px;
+    left: 0;
+    right: auto;
+    min-width: 160px;
+    max-width: 90vw;
+    transform: translateX(0);
+    white-space: normal;
+  }
+
+  .share-dropdown button {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+
+  .story-actions {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}
+
 
 .share-dropdown button {
   background: none;
