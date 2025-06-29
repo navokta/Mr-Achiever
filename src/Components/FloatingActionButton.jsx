@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./FloatingActionButton.css";
 import { FaArrowUp } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
 
 const FloatingActionButton = () => {
   const [isActive, setIsActive] = useState(false);
@@ -25,9 +26,9 @@ const FloatingActionButton = () => {
         style={{ bottom: showTopBtn ? "80px" : "20px" }}
       >
         <div className="fab-options">
-          <a href="/add-story" className="fab-option">
+          <NavLink to="/add-story" className="fab-option">
             📝 Add a Story
-          </a>
+          </NavLink>
           <a href="tel:+918307233996" className="fab-option">
             📞 Call
           </a>

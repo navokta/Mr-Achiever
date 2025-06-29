@@ -9,9 +9,9 @@ const Footer = () => {
       <div className="footer-content">
         {/* About Section */}
         <div className="footer-box footer-about des">
-          <h3 className="footer-txt">About Achievers</h3>
+          <h3 className="footer-txt">About Navokta's Stories</h3>
           <p>
-           Write your story 
+           This platform is a space where you can share your stories, achievements, failures, experiences, and much more. It's a place to inspire others with your journey and learn from the real-life paths of people like you. Your voice matters—because every story deserves to be heard.
           </p>
 
           {/* Social Media Icons */}

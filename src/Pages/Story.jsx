@@ -72,7 +72,7 @@ const Story = () => {
 
   const handleShare = (platform, story) => {
   const url = `${window.location.origin}/story/${story._id}`;
-  const text = `🌟 Check out "${story.name}"'s story:\n\n"${story.story.substring(0, 100)}..." \nRead more: ${url}`;
+  const text = `Read this Beautifull Story form Navokta "${story.name}"'s story:\n\n"${story.story.substring(0, 100)}..." \nRead more: ${url}`;
 
   let shareUrl = "";
 
