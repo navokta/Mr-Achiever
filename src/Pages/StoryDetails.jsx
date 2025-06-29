@@ -8,6 +8,7 @@ const StoryDetail = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    fetch(`http://localhost:5000/api/stories/${id}/view`, { method: 'PATCH' });
     setIsLoading(true);
     fetch(`http://localhost:5000/api/stories/${id}`)
       .then(res => res.json())

@@ -39,7 +39,7 @@ router.post('/', async (req, res) => {
 
 
 router.get('/stories', async (req, res) => {
-  const stories = await Story.find();
+  const stories = await Story.find().sort({ createdAt: -1 });
   res.json(stories);
 });
 

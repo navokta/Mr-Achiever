@@ -28,7 +28,7 @@ const Story = () => {
       try {
         const res = await fetch("http://localhost:5000/api/stories");
         const data = await res.json();
-        setStories(data.reverse());
+        setStories(data);
       } catch (error) {
         console.error("Error fetching stories:", error);
       }

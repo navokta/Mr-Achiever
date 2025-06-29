@@ -2,3 +2,25 @@
     display: none !important;
     /* overflow: hidden; */
 }
+
+.kEEAFG::after{
+    /* color: pink !important; */
+    background: #d63384 !important;
+}
+
+.kEEAFG::before{
+    /* color: pink !important; */
+    background: #d63384 !important;
+}
+
+.eNjtJE::after{
+    background: #d63384 !important;
+}
+
+.eNjtJE::before{
+    background: #d63384 !important;
+}
+
+.hYRtZC:not(.using-icon){
+    background: #532449;
+}
