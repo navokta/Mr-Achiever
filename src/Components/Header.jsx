@@ -20,19 +20,19 @@ const Header = () => {
         <NavLink to="/Story" onClick={() => setMenuOpen(false)}>Stories</NavLink>
         <NavLink to="/Contact" onClick={() => setMenuOpen(false)}>Contact</NavLink>
         <div className="mobile-socials">
-          <a href="https://www.linkedin.com/company/navokta/" target='_blank'><img src="../../src/assets/linkedin.png" alt="LinkedIn" /></a>
-          <a href="https://x.com/navokta" target='_blank'><img src="../../src/assets/twitter.png" alt="Twitter" /></a>
-          <a href="https://github.com/navokta/" target='_blank'><img src="../../src/assets/github.png" alt="GitHub" /></a>
-          <a href="https://www.instagram.com/navokta/" target='_blank'><img src="../../src/assets/insta.png" alt="Instagram" /></a>
+          <a href="https://www.linkedin.com/company/navokta/" target='_blank'><img src="../assets/linkedin.png" alt="LinkedIn" /></a>
+          <a href="https://x.com/navokta" target='_blank'><img src="../assets/twitter.png" alt="Twitter" /></a>
+          <a href="https://github.com/navokta/" target='_blank'><img src="../assets/github.png" alt="GitHub" /></a>
+          <a href="https://www.instagram.com/navokta/" target='_blank'><img src="../assets/insta.png" alt="Instagram" /></a>
         </div>
       </nav>
 
       <div className="header-right">
         <div className="desktop-socials">
-          <a href="https://www.linkedin.com/company/navokta/" target='_blank'><img src="../../src/assets/linkedin.png" alt="LinkedIn" /></a>
-          <a href="https://x.com/navokta" target='_blank'><img src="../../src/assets/twitter.png" alt="Twitter" /></a>
-          <a href="https://github.com/navokta/" target='_blank'><img src="../../src/assets/github.png" alt="GitHub" /></a>
-          <a href="https://www.instagram.com/navokta/" target='_blank'><img src="../../src/assets/insta.png" alt="Instagram" /></a>
+          <a href="https://www.linkedin.com/company/navokta/" target='_blank'><img src="../assets/linkedin.png" alt="LinkedIn" /></a>
+          <a href="https://x.com/navokta" target='_blank'><img src="../assets/twitter.png" alt="Twitter" /></a>
+          <a href="https://github.com/navokta/" target='_blank'><img src="../assets/github.png" alt="GitHub" /></a>
+          <a href="https://www.instagram.com/navokta/" target='_blank'><img src="../assets/insta.png" alt="Instagram" /></a>
         </div>
 
         <button className={`hamburger ${menuOpen ? 'open' : ''}`} onClick={toggleMenu}>
