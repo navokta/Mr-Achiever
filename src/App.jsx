@@ -9,7 +9,7 @@ import Contact from "./Pages/Contact";
 import Footer from "./Components/Footer";
 import StoryEditor from "./Components/StoryEditor";
 import StoryDetail from "./Pages/StoryDetails";
-import Admin from "./Pages/admin";
+import Admin from "./Pages/Admin";
 import LearnMore from "./Components/LearnMore";
 import { Toaster } from 'react-hot-toast';
 
