@@ -6,7 +6,7 @@ import sakshiImg from '../assets/Sakshi.png';
 import bhumiImg from '../assets/bhumi.png';
 import kratakshiImg from '../assets/kratakshi.png';
 import fazalImg from '../assets/fazal.png'
-import abhinavImg from '../assets/abhinav.jpg';
+import abhinavImg from '../assets/Abhinav.jpg';
 
 // const placeholderImg = 'https://via.placeholder.com/150';
 
