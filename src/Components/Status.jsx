@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import './Status.css';
 
+const BASE_URL = (import.meta.env.VITE_API_BASE || "https://mr-achiever.onrender.com").replace(/\/+$/, "");
+
 const Status = () => {
   const [stats, setStats] = useState({ totalUsers: 0, totalStories: 0 });
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/stats')
+    fetch(`${BASE_URL}/api/stats`)
       .then(res => res.json())
       .then(data => {
         setStats(data);
