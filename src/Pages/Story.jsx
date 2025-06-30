@@ -1,26 +1,14 @@
 import React, { useEffect, useState } from "react";
-// import { FaWhatsapp, FaFacebook, FaTwitter, FaTelegram, FaLinkedin, FaLink } from "react-icons/fa";
-import FloatingActionButton from '../Components/FloatingActionButton'
+import FloatingActionButton from '../Components/FloatingActionButton';
 import "./Story.css";
-
 import {
-  FaWhatsapp,
-  FaFacebook,
-  FaTwitter,
-  FaTelegram,
-  FaLinkedin,
-  FaLink,
-  FaThumbsUp,
-  FaComment,
-  FaShareAlt,
-  FaUserCircle,
-  FaEye,
-  FaRegComment,
-  FaRegShareSquare,
-  FaRegThumbsUp,
+  FaWhatsapp, FaFacebook, FaTwitter, FaTelegram, FaLinkedin, FaLink,
+  FaThumbsUp, FaComment, FaShareAlt, FaUserCircle, FaEye,
+  FaRegComment, FaRegThumbsUp
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import "./Story.css";
+
+const BASE_URL = (import.meta.env.VITE_API_BASE || "https://mr-achiever.onrender.com").replace(/\/+$/, "");
 
 const Story = () => {
   const [stories, setStories] = useState([]);
@@ -34,7 +22,7 @@ const Story = () => {
   useEffect(() => {
     const fetchStories = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/stories");
+        const res = await fetch(`${BASE_URL}/api/stories`);
         const data = await res.json();
         setStories(data);
       } catch (error) {
@@ -48,39 +36,34 @@ const Story = () => {
 
   const handleLike = async (id) => {
     if (hasLiked(id)) return alert("You already liked this post!");
-    const res = await fetch(`http://localhost:5000/api/stories/${id}/like`, {
-      method: "PATCH",
-    });
+    const res = await fetch(`${BASE_URL}/api/stories/${id}/like`, { method: "PATCH" });
     const updated = await res.json();
     localStorage.setItem(`liked_${id}`, "true");
-    setStories(stories.map((story) => (story._id === id ? updated : story)));
+    setStories(stories.map(story => story._id === id ? updated : story));
   };
 
   const handleView = async (id) => {
-    const res = await fetch(`http://localhost:5000/api/stories/${id}/view`, {
-      method: "PATCH",
-    });
+    const res = await fetch(`${BASE_URL}/api/stories/${id}/view`, { method: "PATCH" });
     const updated = await res.json();
-    setStories(stories.map((story) => (story._id === id ? updated : story)));
+    setStories(stories.map(story => story._id === id ? updated : story));
   };
 
   const handleCommentSubmit = async (id) => {
     const text = commentTextMap[id];
     if (!text?.trim()) return;
-    const res = await fetch(`http://localhost:5000/api/stories/${id}/comment`, {
+    const res = await fetch(`${BASE_URL}/api/stories/${id}/comment`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ text }),
     });
     const updated = await res.json();
-    setStories(stories.map((story) => (story._id === id ? updated : story)));
-    setCommentTextMap((prev) => ({ ...prev, [id]: "" }));
+    setStories(stories.map(story => story._id === id ? updated : story));
+    setCommentTextMap(prev => ({ ...prev, [id]: "" }));
   };
 
   const handleShare = (platform, story) => {
     const url = `${window.location.origin}/story/${story._id}`;
-    const text = `Read this Beautifull Story form Navokta "${story.name}"'s story:\n\n"${story.story.substring(0, 100)}..." \nRead more: ${url}`;
-
+    const text = `Read this beautiful story from Navokta "${story.name}"'s story:\n\n"${story.story.substring(0, 100)}..." \nRead more: ${url}`;
     let shareUrl = "";
 
     switch (platform) {
@@ -117,10 +100,7 @@ const Story = () => {
       {stories.length === 0 ? (
         <div className="no-stories">
           <p>No stories yet. Be the first to share!</p>
-          <button 
-            className="create-story-btn"
-            onClick={() => navigate('/add-story')}
-          >
+          <button className="create-story-btn" onClick={() => navigate('/add-story')}>
             Create Your Story
           </button>
         </div>
@@ -164,10 +144,8 @@ const Story = () => {
                 <button
                   className="read-more-btn"
                   onClick={() => {
-                    if (expandedStoryId !== story._id) {
-                      handleView(story._id);
-                    }
-                    setExpandedStoryId((prev) => (prev === story._id ? null : story._id));
+                    if (expandedStoryId !== story._id) handleView(story._id);
+                    setExpandedStoryId(prev => prev === story._id ? null : story._id);
                   }}
                 >
                   {expandedStoryId === story._id ? "Show less" : "Read more"}
@@ -186,9 +164,7 @@ const Story = () => {
 
               <button
                 className="action-btn comment-btn"
-                onClick={() =>
-                  setShowCommentsId((prev) => (prev === story._id ? null : story._id))
-                }
+                onClick={() => setShowCommentsId(prev => prev === story._id ? null : story._id)}
               >
                 {showCommentsId === story._id ? <FaComment /> : <FaRegComment />}
                 <span>{story.comments.length}</span>
@@ -197,33 +173,19 @@ const Story = () => {
               <div className="share-dropdown-wrapper">
                 <button
                   className="action-btn share-btn"
-                  onClick={() =>
-                    setShareDropdownId((prev) => (prev === story._id ? null : story._id))
-                  }
+                  onClick={() => setShareDropdownId(prev => prev === story._id ? null : story._id)}
                 >
                   <FaShareAlt />
                 </button>
 
                 {shareDropdownId === story._id && hoveredStoryId === story._id && (
                   <div className="share-dropdown">
-                    <button onClick={() => handleShare("whatsapp", story)}>
-                      <FaWhatsapp /> WhatsApp
-                    </button>
-                    <button onClick={() => handleShare("facebook", story)}>
-                      <FaFacebook /> Facebook
-                    </button>
-                    <button onClick={() => handleShare("telegram", story)}>
-                      <FaTelegram /> Telegram
-                    </button>
-                    <button onClick={() => handleShare("twitter", story)}>
-                      <FaTwitter /> Twitter
-                    </button>
-                    <button onClick={() => handleShare("linkedin", story)}>
-                      <FaLinkedin /> LinkedIn
-                    </button>
-                    <button onClick={() => handleShare("copy", story)}>
-                      <FaLink /> Copy Link
-                    </button>
+                    <button onClick={() => handleShare("whatsapp", story)}><FaWhatsapp /> WhatsApp</button>
+                    <button onClick={() => handleShare("facebook", story)}><FaFacebook /> Facebook</button>
+                    <button onClick={() => handleShare("telegram", story)}><FaTelegram /> Telegram</button>
+                    <button onClick={() => handleShare("twitter", story)}><FaTwitter /> Twitter</button>
+                    <button onClick={() => handleShare("linkedin", story)}><FaLinkedin /> LinkedIn</button>
+                    <button onClick={() => handleShare("copy", story)}><FaLink /> Copy Link</button>
                   </div>
                 )}
               </div>
@@ -245,9 +207,7 @@ const Story = () => {
                       <li key={idx} className="comment-item">
                         <div className="comment-content">
                           <p>{cmt.text}</p>
-                          <small className="comment-date">
-                            {new Date(cmt.date).toLocaleString()}
-                          </small>
+                          <small className="comment-date">{new Date(cmt.date).toLocaleString()}</small>
                         </div>
                       </li>
                     ))}
@@ -261,18 +221,13 @@ const Story = () => {
                     type="text"
                     placeholder="Write a comment..."
                     value={commentTextMap[story._id] || ""}
-                    onChange={(e) =>
-                      setCommentTextMap((prev) => ({
-                        ...prev,
-                        [story._id]: e.target.value,
-                      }))
-                    }
+                    onChange={(e) => setCommentTextMap(prev => ({
+                      ...prev,
+                      [story._id]: e.target.value,
+                    }))}
                     className="comment-input"
                   />
-                  <button
-                    className="post-comment-btn"
-                    onClick={() => handleCommentSubmit(story._id)}
-                  >
+                  <button className="post-comment-btn" onClick={() => handleCommentSubmit(story._id)}>
                     Post
                   </button>
                 </div>
