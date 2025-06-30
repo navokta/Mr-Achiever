@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import "./StoryEditor.css";
 import toast from "react-hot-toast";
 
+const BASE_URL = (import.meta.env.VITE_API_BASE || "https://mr-achiever.onrender.com").replace(/\/+$/, "");
 
 const editorConfig = {
   namespace: "StoryEditor",
@@ -56,7 +57,7 @@ const StoryEditor = () => {
     if (!isReady || !name.trim()) return;
     setIsSubmitting(true);
     try {
-      const res = await fetch("http://localhost:5000/api/stories", {
+      const res = await fetch(`${BASE_URL}/api/stories`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -85,7 +86,7 @@ const StoryEditor = () => {
     if (!isReady || !editorInstance) return;
     setIsRephrasing(true);
     try {
-      const res = await fetch("/api/rephrase", {
+      const res = await fetch(`${BASE_URL}/api/rephrase`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text: story }),
@@ -141,7 +142,9 @@ const StoryEditor = () => {
           </LexicalComposer>
         </div>
 
-        <p className="word-count">📝 Word Count: {wordCount} (When you Write 100 Words then Rephrase & Submit Story button will Work)</p>
+        <p className="word-count">
+          📝 Word Count: {wordCount} (Write at least 100 words to enable rephrase & submit)
+        </p>
 
         <div className="story-editor-actions">
           <button
@@ -161,9 +164,7 @@ const StoryEditor = () => {
           </button>
         </div>
       </div>
-      
     </div>
-
   );
 };
 
