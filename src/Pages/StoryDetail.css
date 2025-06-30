@@ -12,6 +12,7 @@
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   padding: 2rem;
+  transition: padding 0.2s;
 }
 
 /* Loading States */
@@ -46,6 +47,7 @@
   font-size: 2rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
+  word-break: break-word;
 }
 
 .views-count {
@@ -70,6 +72,7 @@
   line-height: 1.75;
   margin-bottom: 3rem;
   white-space: pre-line;
+  word-break: break-word;
 }
 
 /* Comments Section */
@@ -77,6 +80,7 @@
   background-color: #fdf2f8;
   border-radius: 8px;
   padding: 1.5rem;
+  transition: padding 0.2s;
 }
 
 .comments-title {
@@ -112,6 +116,7 @@
 .comment-text {
   color: #374151;
   margin-bottom: 0.5rem;
+  word-break: break-word;
 }
 
 .comment-date {
@@ -135,26 +140,55 @@
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .story-content {
+    max-width: 95vw;
     padding: 1.5rem;
   }
-  
+  .comments-section {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .story-detail-container {
+    padding: 2rem 0.5rem;
+  }
+  .story-content {
+    padding: 1rem;
+    border-radius: 8px;
+  }
   .story-title {
-    font-size: 1.75rem;
+    font-size: 1.5rem;
+  }
+  .comments-section {
+    padding: 0.75rem;
+    border-radius: 6px;
+  }
+  .comments-title {
+    font-size: 1rem;
   }
 }
 
 @media (max-width: 480px) {
   .story-detail-container {
-    padding: 2rem 0.5rem;
+    padding: 1rem 0.25rem;
   }
-  
   .story-content {
-    padding: 1rem;
+    padding: 0.5rem;
+    border-radius: 6px;
   }
-  
   .story-title {
-    font-size: 1.5rem;
+    font-size: 1.1rem;
+  }
+  .comments-section {
+    padding: 0.5rem;
+    border-radius: 4px;
+  }
+  .comments-title {
+    font-size: 0.95rem;
+  }
+  .comment-item {
+    padding: 0.5rem;
   }
 }
