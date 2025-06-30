@@ -2,15 +2,20 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import './StoryDetail.css';
 
+const BASE_URL = (import.meta.env.VITE_API_BASE || "https://mr-achiever.onrender.com").replace(/\/+$/, "");
+
 const StoryDetail = () => {
   const { id } = useParams();
   const [story, setStory] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/stories/${id}/view`, { method: 'PATCH' });
+    // Increase view count
+    fetch(`${BASE_URL}/api/stories/${id}/view`, { method: 'PATCH' });
+
+    // Fetch the story
     setIsLoading(true);
-    fetch(`http://localhost:5000/api/stories/${id}`)
+    fetch(`${BASE_URL}/api/stories/${id}`)
       .then(res => res.json())
       .then(data => {
         setStory(data);
@@ -19,17 +24,21 @@ const StoryDetail = () => {
       .catch(() => setIsLoading(false));
   }, [id]);
 
-  if (isLoading) return (
-    <div className="story-detail-loading">
-      <div className="loading-text">Loading story...</div>
-    </div>
-  );
+  if (isLoading) {
+    return (
+      <div className="story-detail-loading">
+        <div className="loading-text">Loading story...</div>
+      </div>
+    );
+  }
 
-  if (!story) return (
-    <div className="story-detail-loading">
-      <div className="not-found-text">Story not found</div>
-    </div>
-  );
+  if (!story) {
+    return (
+      <div className="story-detail-loading">
+        <div className="not-found-text">Story not found</div>
+      </div>
+    );
+  }
 
   return (
     <div className="story-detail-container">
@@ -59,7 +68,7 @@ const StoryDetail = () => {
             </svg>
             Comments
           </h3>
-          
+
           {story.comments.length > 0 ? (
             <ul className="comments-list">
               {story.comments.map((c, i) => (
