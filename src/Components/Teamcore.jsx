@@ -10,6 +10,7 @@ import abhinavImg from '../assets/Abhinav.jpg';
 
 // const placeholderImg = 'https://via.placeholder.com/150';
 
+
 const Teamcore = () => {
   const [activeProfile, setActiveProfile] = useState(null);
 
