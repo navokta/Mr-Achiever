@@ -52,7 +52,7 @@ const Teamcore = () => {
       name: "Abhinav Kaushik",
       position: "Singer ji",
       image: abhinavImg,
-      summary: "The Artist",
+      summary: "Image & Video Editor",
       fullDescription: "Abhinav has been with me since the very beginning. He has a unique personality — full of energy, positivity, and that rare spark that keeps everyone around him engaged and uplifted. He never lets things get dull, and that’s something truly special. What I admire most about him is his helpful and always-available nature. He genuinely cares for those who matter to him, and that makes him not just a great teammate, but a wonderful human being. Beyond that, Abhinav is also a talented singer and someone who brings a friendly, warm vibe wherever he goes. He knows how to connect with people, and his support has meant a lot to me over time. Yes, in the past there were things I didn’t completely agree with, but we’ve moved past that. We’ve grown, matured, and today I can proudly say that Abhinav is one of my closest and most dependable friends."
     },
     {
