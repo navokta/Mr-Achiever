@@ -8,13 +8,11 @@ const StoryDetail = () => {
   const { id } = useParams();
   const [story, setStory] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [newComment, setNewComment] = useState('');
+  const [isLiking, setIsLiking] = useState(false);
+  const [hasLiked, setHasLiked] = useState(false); // New state
 
-  useEffect(() => {
-    // Increase view count
-    fetch(`${BASE_URL}/api/stories/${id}/view`, { method: 'PATCH' });
-
-    // Fetch the story
-    setIsLoading(true);
+  const fetchStory = () => {
     fetch(`${BASE_URL}/api/stories/${id}`)
       .then(res => res.json())
       .then(data => {
@@ -22,28 +20,69 @@ const StoryDetail = () => {
         setIsLoading(false);
       })
       .catch(() => setIsLoading(false));
+  };
+
+  useEffect(() => {
+    // Increase view count
+    fetch(`${BASE_URL}/api/stories/${id}/view`, { method: 'PATCH' });
+
+    // Check if user already liked
+    const likedStories = JSON.parse(localStorage.getItem("likedStories") || "[]");
+    setHasLiked(likedStories.includes(id));
+    setIsLiking(likedStories.includes(id)); // disable button if already liked
+
+    setIsLoading(true);
+    fetchStory();
   }, [id]);
 
+  const handleCommentSubmit = async (e) => {
+    e.preventDefault();
+    if (!newComment.trim()) return;
+
+    const response = await fetch(`${BASE_URL}/api/stories/${id}/comment`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text: newComment })
+    });
+
+    if (response.ok) {
+      setNewComment('');
+      fetchStory(); // Refresh comments
+    }
+  };
+
+  const handleLike = async () => {
+    if (hasLiked) return;
+
+    const res = await fetch(`${BASE_URL}/api/stories/${id}/like`, {
+      method: 'PATCH'
+    });
+
+    if (res.ok) {
+      const likedStories = JSON.parse(localStorage.getItem("likedStories") || "[]");
+      likedStories.push(id);
+      localStorage.setItem("likedStories", JSON.stringify(likedStories));
+      setHasLiked(true);
+      setIsLiking(true);
+      fetchStory(); // Refresh likes
+    } else {
+      const data = await res.json();
+      alert(data.message || "You already liked this story.");
+    }
+  };
+
   if (isLoading) {
-    return (
-      <div className="story-detail-loading">
-        <div className="loading-text">Loading story...</div>
-      </div>
-    );
+    return <div className="story-detail-loading"><div className="loading-text">Loading story...</div></div>;
   }
 
   if (!story) {
-    return (
-      <div className="story-detail-loading">
-        <div className="not-found-text">Story not found</div>
-      </div>
-    );
+    return <div className="story-detail-loading"><div className="not-found-text">Story not found</div></div>;
   }
 
   return (
     <div className="story-detail-container">
       <div className="story-content">
-        {/* Story Header */}
+        {/* Header */}
         <div className="story-header">
           <h2 className="story-title">{story.name}</h2>
           <div className="views-count">
@@ -53,14 +92,18 @@ const StoryDetail = () => {
             </svg>
             <span>{story.views} views</span>
           </div>
+
+          <button className="like-button" onClick={handleLike} disabled={isLiking}>
+            ❤️ {story.likes || 0} Likes
+          </button>
         </div>
 
-        {/* Story Content */}
+        {/* Content */}
         <div className="story-text">
           <p>{story.story}</p>
         </div>
 
-        {/* Comments Section */}
+        {/* Comments */}
         <div className="comments-section">
           <h3 className="comments-title">
             <svg className="comments-icon" viewBox="0 0 24 24">
@@ -86,6 +129,18 @@ const StoryDetail = () => {
           ) : (
             <p className="no-comments">No comments yet. Be the first to comment!</p>
           )}
+
+          {/* Comment Input */}
+          <form className="comment-form" onSubmit={handleCommentSubmit}>
+            <textarea
+              value={newComment}
+              onChange={(e) => setNewComment(e.target.value)}
+              placeholder="Write a comment..."
+              rows="3"
+              required
+            />
+            <button type="submit">Post Comment</button>
+          </form>
         </div>
       </div>
     </div>

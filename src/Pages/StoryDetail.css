@@ -192,3 +192,36 @@
     padding: 0.5rem;
   }
 }
+
+.like-button {
+  background: #ffdee9;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 20px;
+  margin-top: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.comment-form {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-form textarea {
+  padding: 10px;
+  border-radius: 8px;
+  resize: vertical;
+  font-size: 14px;
+}
+
+.comment-form button {
+  margin-top: 8px;
+  padding: 8px 12px;
+  background-color: #c4185d;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
