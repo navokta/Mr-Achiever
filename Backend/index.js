@@ -15,11 +15,11 @@ const app = express();
 
 
 // Allow requests from your frontend domain
-app.use(cors({
-  origin: 'https://www.navokta.com',
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true
-}));
+// app.use(cors({
+//   origin: 'https://www.navokta.com',
+//   methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//   credentials: true
+// }));
 
 
 app.use(cors());
