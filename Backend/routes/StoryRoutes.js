@@ -20,7 +20,7 @@ const StorySchema = new mongoose.Schema({
 
 const Story = mongoose.models.Story || mongoose.model('Story', StorySchema);
 
-// ✅ Create a story (POST /api/stories)
+// ✅ Create a story
 router.post('/', async (req, res) => {
   try {
     const { name, story } = req.body;
@@ -35,7 +35,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-// ✅ Get all stories (GET /api/stories)
+// ✅ Get all stories
 router.get('/', async (req, res) => {
   try {
     const stories = await Story.find().sort({ createdAt: -1 });
@@ -46,7 +46,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// ✅ Get a single story by ID (GET /api/stories/:id)
+// ✅ Get a single story by ID
 router.get('/:id', async (req, res) => {
   try {
     const { id } = req.params;
@@ -63,7 +63,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// ✅ Like a story (PATCH /api/stories/:id/like)
+// ✅ Like a story
 router.patch('/:id/like', async (req, res) => {
   try {
     const updated = await Story.findByIdAndUpdate(
@@ -78,7 +78,7 @@ router.patch('/:id/like', async (req, res) => {
   }
 });
 
-// ✅ View a story (PATCH /api/stories/:id/view)
+// ✅ View a story
 router.patch('/:id/view', async (req, res) => {
   try {
     const updated = await Story.findByIdAndUpdate(
@@ -93,7 +93,7 @@ router.patch('/:id/view', async (req, res) => {
   }
 });
 
-// ✅ Comment on a story (POST /api/stories/:id/comment)
+// ✅ Comment on a story
 router.post('/:id/comment', async (req, res) => {
   try {
     const { text } = req.body;

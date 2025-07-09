@@ -16,7 +16,7 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   credentials: true
 }));
-app.options('*', cors()); // Allow preflight requests
+app.options('*', cors());
 
 app.use(express.json());
 
@@ -28,9 +28,14 @@ mongoose.connect(process.env.MONGO_URI, {
 .then(() => console.log('✅ MongoDB connected'))
 .catch((err) => console.error('❌ MongoDB connection error:', err));
 
-// ✅ Routes
+// ✅ ROUTE REGISTRATION LOGS
+console.log("🔧 Registering rephraseRoute on /api");
 app.use('/api', rephraseRoute);
+
+console.log("🔧 Registering storyRoutes on /api/stories");
 app.use('/api/stories', storyRoutes);
+
+console.log("🔧 Registering adminRoutes on /api/admin");
 app.use('/api/admin', adminRoutes);
 
 // ✅ PATCH: Like a story
@@ -95,6 +100,22 @@ app.get('/api/stats', async (req, res) => {
   } catch (err) {
     console.error("Error fetching stats:", err);
     res.status(500).json({ error: "Failed to fetch stats" });
+  }
+});
+
+// ✅ Confirm server start
+console.log("✅ All routes registered. Starting server...");
+
+// ✅ List all registered routes for debugging
+app._router.stack.forEach((middleware) => {
+  if (middleware.route) {
+    console.log("📦 Route:", middleware.route.path);
+  } else if (middleware.name === 'router') {
+    middleware.handle.stack.forEach((handler) => {
+      if (handler.route) {
+        console.log("📦 Route:", handler.route.path);
+      }
+    });
   }
 });
 
