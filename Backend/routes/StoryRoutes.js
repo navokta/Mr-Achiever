@@ -18,10 +18,9 @@ const StorySchema = new mongoose.Schema({
   ]
 });
 
-// Reuse model if already compiled
 const Story = mongoose.models.Story || mongoose.model('Story', StorySchema);
 
-// ✅ Create story
+// ✅ Create a story (POST /api/stories)
 router.post('/', async (req, res) => {
   try {
     const { name, story } = req.body;
@@ -36,26 +35,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-
-
-router.get('/stories', async (req, res) => {
-  const stories = await Story.find().sort({ createdAt: -1 });
-  res.json(stories);
-});
-
-router.get('/stories/:id', async (req, res) => {
-  const { id } = req.params;
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(400).json({ error: 'Invalid ID format' });
-  }
-
-  const story = await Story.findById(id);
-  if (!story) return res.status(404).json({ error: 'Story not found' });
-  res.json(story);
-});
-
-
-// ✅ Get all stories
+// ✅ Get all stories (GET /api/stories)
 router.get('/', async (req, res) => {
   try {
     const stories = await Story.find().sort({ createdAt: -1 });
@@ -66,10 +46,15 @@ router.get('/', async (req, res) => {
   }
 });
 
-// ✅ Get a single story by ID
+// ✅ Get a single story by ID (GET /api/stories/:id)
 router.get('/:id', async (req, res) => {
   try {
-    const story = await Story.findById(req.params.id);
+    const { id } = req.params;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ error: 'Invalid ID format' });
+    }
+
+    const story = await Story.findById(id);
     if (!story) return res.status(404).json({ error: "Story not found." });
     res.json(story);
   } catch (err) {
@@ -78,7 +63,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// ✅ Like a story
+// ✅ Like a story (PATCH /api/stories/:id/like)
 router.patch('/:id/like', async (req, res) => {
   try {
     const updated = await Story.findByIdAndUpdate(
@@ -93,7 +78,7 @@ router.patch('/:id/like', async (req, res) => {
   }
 });
 
-// ✅ View a story
+// ✅ View a story (PATCH /api/stories/:id/view)
 router.patch('/:id/view', async (req, res) => {
   try {
     const updated = await Story.findByIdAndUpdate(
@@ -108,7 +93,7 @@ router.patch('/:id/view', async (req, res) => {
   }
 });
 
-// ✅ Comment on a story
+// ✅ Comment on a story (POST /api/stories/:id/comment)
 router.post('/:id/comment', async (req, res) => {
   try {
     const { text } = req.body;

@@ -3,7 +3,6 @@ import dotenv from 'dotenv';
 import Story from '../models/Story.js';
 
 dotenv.config();
-
 const router = express.Router();
 
 // ✅ Admin login
@@ -20,7 +19,7 @@ router.post('/login', (req, res) => {
   }
 });
 
-// ✅ Get all stories (admin view)
+// ✅ Get all stories
 router.get('/stories', async (req, res) => {
   try {
     const stories = await Story.find().sort({ createdAt: -1 });
@@ -30,7 +29,7 @@ router.get('/stories', async (req, res) => {
   }
 });
 
-// ✅ Edit a story
+// ✅ Edit story
 router.put('/stories/:id', async (req, res) => {
   const { name, story } = req.body;
   try {
@@ -45,7 +44,7 @@ router.put('/stories/:id', async (req, res) => {
   }
 });
 
-// ✅ Delete a story
+// ✅ Delete story
 router.delete('/stories/:id', async (req, res) => {
   try {
     await Story.findByIdAndDelete(req.params.id);
@@ -55,7 +54,7 @@ router.delete('/stories/:id', async (req, res) => {
   }
 });
 
-// ✅ Edit a comment
+// ✅ Edit comment
 router.put('/stories/:storyId/comments/:commentIndex', async (req, res) => {
   const { storyId, commentIndex } = req.params;
   const { text } = req.body;
@@ -75,7 +74,7 @@ router.put('/stories/:storyId/comments/:commentIndex', async (req, res) => {
   }
 });
 
-// ✅ Delete a comment
+// ✅ Delete comment
 router.delete('/stories/:storyId/comments/:commentIndex', async (req, res) => {
   const { storyId, commentIndex } = req.params;
 
@@ -94,7 +93,7 @@ router.delete('/stories/:storyId/comments/:commentIndex', async (req, res) => {
   }
 });
 
-// ✅ Update view count manually
+// ✅ Manually update view count
 router.patch('/stories/:id/view', async (req, res) => {
   const { views } = req.body;
   try {
