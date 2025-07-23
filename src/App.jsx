@@ -13,6 +13,8 @@ import Admin from "./Pages/admin";
 import LearnMore from "./Components/LearnMore";
 import { Toaster } from 'react-hot-toast';
 
+import Ads from '../ads.txt';
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -92,6 +94,12 @@ const router = createBrowserRouter([
         <LearnMore />
         <Footer />
       </div>
+    ),
+  },
+  {
+    path: "/ads.txt",
+    element: (
+      <Ads />
     ),
   }
 ]);
