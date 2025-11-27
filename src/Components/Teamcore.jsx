@@ -7,6 +7,7 @@ import bhumiImg from '../assets/bhumi.png';
 import kratakshiImg from '../assets/kratakshi.png';
 import fazalImg from '../assets/fazal.png'
 import abhinavImg from '../assets/Abhinav.jpg';
+import gauravImg from '../assets/Gaurav.jpg';
 
 // const placeholderImg = 'https://via.placeholder.com/150';
 
@@ -49,6 +50,24 @@ const Teamcore = () => {
     },
     {
       id: 5,
+      name: "Gaurav Pratap Singh",
+      position: "Gauravions",
+      image: gauravImg,
+      summary: "Marketing Head",
+      fullDescription: `Gaurav Bhai and I first met by complete chance, in a totally random moment. From the very beginning, I realized how deeply knowledgeable he is when it comes to finance and business. Somehow, in that brief meeting, he saw something in me—a spark of a tech person—and I still don’t know how a tech-minded girl like me and a business-minded person like him formed such a powerful team.
+
+Today, when I look back, we’ve already achieved so much together:
+ByteWar-1, a coding competition…
+ByteWar-2, a full hackathon…
+A BGMI tournament…
+And many more things that shaped our journey.
+
+For me, Gaurav Bhai is more than a friend—he is like a true guide. Before I take any important decision, he always warns me carefully, helping me understand the consequences. His guidance feels exactly like the way Shri Krishna guided Arjun in the Mahabharata—calm, wise, and full of clarity. His opinions have always held great value for me.
+
+If I ever plan to start something—whether it’s a business, a competition, a hackathon, or even a small momos shop—if it’s with Gaurav Bhai, I would say “yes” without thinking twice.`
+    },
+    {
+      id: 6,
       name: "Abhinav Kaushik",
       position: "Singer ji",
       image: abhinavImg,
@@ -56,7 +75,7 @@ const Teamcore = () => {
       fullDescription: "Abhinav has been with me since the very beginning. He has a unique personality — full of energy, positivity, and that rare spark that keeps everyone around him engaged and uplifted. He never lets things get dull, and that’s something truly special. What I admire most about him is his helpful and always-available nature. He genuinely cares for those who matter to him, and that makes him not just a great teammate, but a wonderful human being. Beyond that, Abhinav is also a talented singer and someone who brings a friendly, warm vibe wherever he goes. He knows how to connect with people, and his support has meant a lot to me over time. Yes, in the past there were things I didn’t completely agree with, but we’ve moved past that. We’ve grown, matured, and today I can proudly say that Abhinav is one of my closest and most dependable friends."
     },
     {
-      id: 6,
+      id: 7,
       name: "Kratakshi Bhardwaj",
       position: "Personal Advisor",
       image: kratakshiImg,
@@ -64,7 +83,7 @@ const Teamcore = () => {
       fullDescription: "Kratakshi and I have known each other since the Clueless Coder days—that's where our friendship truly began. Over time, we became close friends. She’s innocent, a bit of a foodie (though she doesn’t eat much!), and someone I occasionally get upset with—but thankfully, I also know exactly how to cheer her up. Right, Kratakshi? 😄.  What makes her truly special is her lack of jealousy—she's genuinely supportive of everyone and impresses people effortlessly. Yes, she can get a little lazy sometimes when it comes to work, but if not for that, she’d be number one at everything! When I’m overwhelmed with Navokta’s responsibilities, she’s the one I turn to. She calms me down, helps me get back on track, and quietly supports the tasks behind the scenes. She’s nurturing and caring, almost like a second mother in the group. Kratakshi, I’ll always be there for you, just like you’ve been there for me. I truly wish you all the success and happiness ahead, and I hope our bond continues to grow stronger with time."
     },
      {
-      id: 7,
+      id: 8,
       name: "Mohd. Fazal Ali",
       position: "Core team Member",
       image: fazalImg,
