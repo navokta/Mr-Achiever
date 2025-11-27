@@ -54,7 +54,7 @@ const Teamcore = () => {
       position: "Gauravions",
       image: gauravImg,
       summary: "Marketing Head",
-      fullDescription: `Gaurav Bhai and I first met by complete chance, in a totally random moment. From the very beginning, I realized how deeply knowledgeable he is when it comes to finance and business. Somehow, in that brief meeting, he saw something in me—a spark of a tech person—and I still don’t know how a tech-minded girl like me and a business-minded person like him formed such a powerful team.
+      fullDescription: `Gaurav Bhai and I first met by complete chance, in a totally random moment. From the very beginning, I realized how deeply knowledgeable he is when it comes to finance and business. Somehow, in that brief meeting, he saw something in me—a spark of a tech person—and I still don’t know how a tech-minded person like me and a business-minded person like him formed such a powerful team.
 
 Today, when I look back, we’ve already achieved so much together:
 ByteWar-1, a coding competition…
